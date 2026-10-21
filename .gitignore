@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# pipeline outputs
+examples/siap_example_out/
+wemsm_out/
+*.prev
+*.prev.meta.json
+*.tmp

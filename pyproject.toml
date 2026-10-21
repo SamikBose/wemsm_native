@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wemsm_native"
+version = "0.1.0"
+description = "Markov state models from weighted-ensemble (wepy/REVO) simulations: lineage-aware tICA, k-means, weighted counts and CSN state weights"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Samik Bose"},
+    {name = "Alex Dickson"},
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "h5py",
+    "mdtraj",
+    "deeptime",
+    "wepy",
+    "networkx",
+    "matplotlib",
+    # not on PyPI; installed from GitHub
+    "csnanalysis @ git+https://github.com/ADicksonLab/CSNAnalysis.git",
+]
+
+[project.optional-dependencies]
+# sequence alignment for CA RMSD (a built-in fallback is used without it)
+align = ["biopython"]
+
+[project.scripts]
+wemsm-native = "wemsm_native.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

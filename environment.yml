@@ -1,0 +1,12 @@
+# conda env create -f environment.yml && conda activate wemsm_native
+# conda provides only Python; pip installs the package and all its
+# dependencies (including CSNAnalysis from GitHub), which keeps the conda
+# solve trivial.
+name: wemsm_native
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - -e .[align]
