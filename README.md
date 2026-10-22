@@ -117,40 +117,28 @@ Copy the production template, edit the run paths and analysis settings, then
 inspect the plan and run the pipeline:
 
 ```bash
-cp examples/example_config.py my_config.py
 wemsm-native status --config my_config.py
 wemsm-native all --config my_config.py
 ```
 
-The [configuration reference](docs/configuration.md) documents every setting,
-including input runs, features, tICA, clustering, observables, and MSM weights.
+**Please carefully check the [configuration reference](docs/configuration.md) documents every setting,
+including input runs, features, tICA, clustering, observables, and MSM weights.**
 
-## Bundled example data
+## Bundled example data (for testing the install)
 
-`examples/data/` holds three real SiaP REVO runs (aSAM cluster 2, 10 cycles x
-48 walkers, merge distances 2, 5 and 10; about 34 MB each) and the reference
-PDB. They were made from the original 731 MB `wepy.results.h5` files by
-`examples/make_example_data.py`, which drops solvent atoms and copies
-everything else unchanged, including the real resampling records:
+`examples/data/` holds three real SiaP REVO runs ( 10 cycles x
+48 walkers, nmerge2, 5 and 10) and the reference
+PDB. These files intentionally drop solvent atoms for efficient transfer/storage, but includes the real resampling records:
 
-| file | source |
-|---|---|
-| `SiaP_clust2_nmerge{2,5,10}.h5` | `wepy_sims/SiaP_2CEY/aSAM_clust2/nmerge{N}_tica_test_clust2/run0_walk48_steps10000_cycs10_substep0_nmerge{N}/wepy.results.h5` |
-| `SiaP_clust2_start.pdb` | protein of cycle 0, walker 0 of the nmerge2 run |
 
-Run the example (about 10 s); results go to `examples/siap_example_out/`:
+Run the examples; results go to `examples/siap_example_out/`:
 
 ```bash
 wemsm-native all --config examples/siap_example_config.py
 ```
 
 Two of the runs are capped at 7 and 5 cycles to show runs of different
-lengths. Results are identical to running the pipeline on the original
-unstripped files. To make similar files from other runs:
-
-```bash
-python examples/make_example_data.py SRC.h5 DEST.h5 --selection protein
-```
+lengths. 
 
 | example file | purpose |
 |---|---|
