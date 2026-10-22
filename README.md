@@ -1,20 +1,21 @@
 # wemsm_native
 
-`wemsm_native` builds Markov state models (MSMs) from WEPY weighted-ensemble
-simulation data, including REVO runs. It follows walker lineages through
-cloning and merging to compute weighted transition counts, estimates
-stationary state probabilities with CSNAnalysis, and exports state networks
-and free-energy landscapes.
+`wemsm_native` builds Markov state models (MSMs) from WEPY weighted ensemble
+simulation data. It follows resampling records (walker lineage) to build time-lagged data for tica training or weighted counts matrices.
+It also project the simulation data into states (namely kmeans clusters) and compute state properties. 
+From the transition count matrices, one can estimate stationary state probabilities, transition rates etc. with 
+CSNAnalysis. Also, one can build networkx objects and free energy landscapes directly from the `wemsm_native`-derived transition matrices, using CSNAnalysis.
+
+**Important:** It should be noted that the current version of `wemsm_native` is implemented without merging bias correction (MBS-MSM). The MBC-MSM version will be added soon. 
 
 ```text
-WEPY HDF5 runs → features → lineage-aware tICA → k-means
-   → weighted transition counts → MSM state weights → networks and free-energy plots
+WEPY HDF5 ->  features -> tICA training -> k-means -> weighted transition counts -> MSM state weights -> networks and free-energy plots
 ```
 
 ## Quick start
 
 With Python ≥ 3.10 and Git installed, run the complete workflow on the bundled
-SiaP data without editing any paths:
+SiaP (sialic acid binding protein) example data without editing any paths:
 
 ```bash
 git clone https://github.com/SamikBose/wemsm_native.git
@@ -67,7 +68,7 @@ installation).
 ```bash
 git clone https://github.com/SamikBose/wemsm_native.git
 cd wemsm_native
-pip install -e ".[align]"        # [align] adds Biopython; optional
+pip install -e ".[align]"        # [align] adds Biopython; optional but recommended
 ```
 
 Or install directly from GitHub without cloning; the bundled examples and
