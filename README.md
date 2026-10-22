@@ -28,12 +28,6 @@ Results are written to `examples/siap_example_out/`: features, tICA projections,
 cluster assignments, transition matrices, stationary state weights, GEXF
 networks, and free-energy plots with their underlying arrays.
 
-![MSM-weighted free-energy surface of the bundled SiaP runs along the first two tICA coordinates, with free energy in kcal/mol.](docs/images/siap_tic1_tic2_msm.png)
-
-Example output at 300 K from the command above, using the example config's
-`cluster` frame-weight mapping. Blank bins contain no sampled probability.
-See [Methodology](#methodology) for the weighting conventions. This small
-dataset demonstrates the workflow.
 
 For other installation options, see [Install](#install). To analyze your own
 simulations, see [Use your own data](#use-your-own-data) and the
